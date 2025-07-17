@@ -31,7 +31,7 @@ R scripts to be written
 ---------------------------------------
 
 ## Chapter 4 
-R scripts to be posted
+_R scripts to be posted_
 ### Tables
 - Table 4.1
 - Table 4.2
