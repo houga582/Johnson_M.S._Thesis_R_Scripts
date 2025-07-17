@@ -26,7 +26,7 @@ Figure 2.1
 ---------------------------------------
 
 ## Chapter 3
-R scripts to be written
+_R scripts to be posted_
 
 ---------------------------------------
 
