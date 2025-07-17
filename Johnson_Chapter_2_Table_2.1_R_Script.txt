@@ -38,7 +38,7 @@ Condition_Summary <- Long_Proteins %>%
   select(Protein, `Environmental Condition`, `Mean ± SD`) %>% # Choosing these columns
   pivot_wider(names_from = `Environmental Condition`, values_from = `Mean ± SD`) # Transforming to wide format
 
-# Merging Previous with Differential Expression Analysis
+## Merging Previous with Differential Expression Analysis
 Proteins_All <- Proteins %>%
   group_by(protein_id) %>%
   summarize(
