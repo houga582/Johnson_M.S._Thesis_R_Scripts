@@ -26,11 +26,12 @@ Figure 2.1
 ---------------------------------------
 
 ## Chapter 3
-R scripts to be posted
+R scripts to be written
 
 ---------------------------------------
 
-## Chapter 4
+## Chapter 4 
+R scripts to be posted
 ### Tables
 - Table 4.1
 - Table 4.2
