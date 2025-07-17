@@ -1,4 +1,4 @@
-# Johnson_M.S._Thesis_R_Scripts GitHub Repository Description
+# GitHub Repository Description
 This GitHub repository contains all annotated R scripts that code for all tables and figures contained in my M.S. thesis. 
 The intent of this GitHub repository is to serve as a central location for all my R scripts. As I receive feedback on my figures, I will commit coding changes **HERE** . 
 The purpose is to retain my R code so I can: 
@@ -43,4 +43,4 @@ R scripts to be posted
 
 ---------------------------------------
 
-# End of ReadME.md
+## End of ReadME.md
