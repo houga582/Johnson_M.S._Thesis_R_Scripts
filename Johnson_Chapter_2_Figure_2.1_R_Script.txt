@@ -1,0 +1,117 @@
+# Loading Required Packages
+library(dplyr)
+library(tidyr)
+library(stringr)
+library(ggplot2)
+library(scales)
+library(officer)
+library(patchwork)  # for combining plots
+
+# Importing Data and Displaying Structure
+Proteins <- read.csv("DiffExpProteinsFinal.csv")
+str(Proteins)
+
+# Transposing Data to Long Format
+Long_Proteins <- Proteins %>%
+  rename(Protein = protein_id) %>% # Renaming protein_id column
+  pivot_longer(cols = matches("^Control_\\d+$|^Heat_\\d+$"), # Selects columns with these names and renames to "Sample"
+               names_to = "Sample",
+               values_to = "Relative Abundance") %>% # Creates column to contain the values selected
+  mutate(Sample = as.factor(Sample), # Converts sample to factor
+         `Environmental Condition` = 
+           case_when(str_detect(Sample, "^Control") ~ # Labels as Thermoneutral
+                                 "Thermoneutral",
+                               str_detect(Sample, "^Heat") ~ # Labels as Heat
+                                 "Heat")) %>%
+   mutate(`Environmental Condition` = # Specifies factor order as Thermoneutral then Heat
+            factor(`Environmental Condition`, 
+                   levels = c("Thermoneutral", "Heat")))
+
+# Defining Proteins by Protein ID
+protein_list <- c("A0A3Q1LUA4", "A1A4R1", "A7MAZ5", "P62803", "P62808", "Q3T014")
+protein_names <- c(
+  "A0A3Q1LUA4" = "Proteasome 26S Subunit, ATPase 1", # Mapping Protein IDs to Protein Names
+  "A1A4R1" = "Histone H2A Type 2-C",
+  "A7MAZ5" = "Histone H1.3",
+  "P62803" = "Histone H4",
+  "P62808" = "Histone H2B Type 1",
+  "Q3T014" = "Bisphosphoglycerate Mutase"
+)
+
+# Ordering Proteins for the Figure
+ordered_names <- c(
+  "Proteasome 26S Subunit, ATPase 1",
+  "Histone H2A Type 2-C",
+  "Histone H1.3",
+  "Histone H4",
+  "Histone H2B Type 1",
+  "Bisphosphoglycerate Mutase"
+)
+
+# 
+filtered_data <- Long_Proteins %>%
+  filter(Protein %in% protein_list) %>%
+  mutate(Protein_Name = factor(protein_names[Protein], levels = ordered_names)) %>% # Set factor order
+  mutate(Facet_Label = factor(LETTERS[as.numeric(Protein_Name)], levels = LETTERS[1:6])) # Labeling panels A through F
+
+y_min <- floor(min(filtered_data$`Relative Abundance`, na.rm = TRUE)) # Minimum y value
+y_max <- ceiling(max(filtered_data$`Relative Abundance`, na.rm = TRUE)) # Maximum y value
+y_breaks <- pretty(c(y_min, y_max), n = 5) # 5 breaks
+
+# Main faceted plot, no x-axis text or ticks or legend
+main_plot <- ggplot(filtered_data, aes(x = `Environmental Condition`, y = `Relative Abundance`, fill = `Environmental Condition`)) +
+  geom_boxplot(color = "black", width = 0.6, outlier.size = 1) + # Boxplot with black outline
+  scale_fill_grey(start = 0.6, end = 0.9) + # Gray-scale
+  scale_y_continuous(limits = c(y_min, y_max), breaks = y_breaks) + # Settings for y axis
+  facet_wrap(~ Facet_Label, nrow = 2, ncol = 3, scales = "fixed") + # Faceted to 2 by 3 with fixed scale
+  labs(
+    title = "Relative Abundance of Plasma Proteins by Environmental Condition",
+    x = "Environmental Condition",
+    y = "Relative Abundance"
+  ) +
+  theme_minimal(base_size = 14, base_family = "Helvetica") + # Theme for figure
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold", size = 16), # Center, bold main title
+    axis.title.x = element_text(face = "bold", size = 14), # Bold x axis title
+    axis.title.y = element_text(face = "bold", size = 14), # Bold y axis title
+    axis.text.x = element_blank(), # Remove text from x axis
+    axis.ticks.x = element_blank(), # Remove text from y axis
+    axis.text.y = element_text(size = 12), # Changing y axis text size from default
+    legend.position = "none", # No default legend
+    panel.grid.major.x = element_blank(), # Remove vertical lines
+    panel.grid.major.y = element_line(color = "gray80", size = 0.5), # Lighten horizontal lines
+    panel.grid.minor = element_blank(), # Remove minor lines
+    strip.text = element_text(face = "bold", size = 13, color = "black"), # Bold, size, and color settings for facet labels
+    plot.margin = margin(20, 20, 10, 20) # Margins set for the plot
+  )
+
+# Custom legend to indicate boxplots
+legend_df <- data.frame(
+  x = c(1.3, 1.7),  # symmetric around 1.5 # x coordinates
+  y = c(1, 1), # y coordinates
+  label = c("Thermoneutral", "Heat"), # labels added
+  color = c("gray40", "gray80") # fill for circles
+)
+
+legend_plot <- ggplot(legend_df, aes(x = x, y = y)) +
+  geom_point(aes(color = color), size = 4, show.legend = FALSE) +  # controls point size
+  geom_text(aes(label = label), vjust = -1.1, size = 3.5) +       # controls vertical spacing
+  scale_color_identity() +
+  xlim(1, 2) + # x limits
+  ylim(0.7, 1.3) + # y limits
+  theme_void() + # Removes everything from behind
+  theme(
+    plot.margin = margin(0, 20, 20, 20) # Adds margins
+  )
+
+# Combine main plot and legend vertically
+combined_plot <- main_plot / legend_plot + plot_layout(heights = c(10, 1)) # Layers the main plot and legend plot together
+
+# Creating the Word Document and Adding Figure 2.1
+doc <- read_docx() %>%
+  body_add_par("Faceted Boxplots for All Proteins", style = "heading 1") %>%
+  body_add_gg(combined_plot, width = 8, height = 8) %>%
+  body_add_par("", style = "Normal")
+
+# Save the document
+print(doc, target = "Johnson_Chapter_2_Figure_2.1.docx")
