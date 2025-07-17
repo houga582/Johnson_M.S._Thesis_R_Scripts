@@ -5,7 +5,7 @@ library(stringr)
 library(ggplot2)
 library(scales)
 library(officer)
-library(patchwork)  # for combining plots
+library(patchwork)  # New package for Combining Plots!
 
 # Importing Data and Displaying Structure
 Proteins <- read.csv("DiffExpProteinsFinal.csv")
@@ -48,18 +48,17 @@ ordered_names <- c(
   "Bisphosphoglycerate Mutase"
 )
 
-# 
-filtered_data <- Long_Proteins %>%
-  filter(Protein %in% protein_list) %>%
+# Ordering Factor Levels and Assigning Panel Labels
+Long_Proteins2 <- Long_Proteins %>%
   mutate(Protein_Name = factor(protein_names[Protein], levels = ordered_names)) %>% # Set factor order
   mutate(Facet_Label = factor(LETTERS[as.numeric(Protein_Name)], levels = LETTERS[1:6])) # Labeling panels A through F
 
-y_min <- floor(min(filtered_data$`Relative Abundance`, na.rm = TRUE)) # Minimum y value
-y_max <- ceiling(max(filtered_data$`Relative Abundance`, na.rm = TRUE)) # Maximum y value
+y_min <- floor(min(Long_Proteins2$`Relative Abundance`, na.rm = TRUE)) # Minimum y value
+y_max <- ceiling(max(Long_Proteins2$`Relative Abundance`, na.rm = TRUE)) # Maximum y value
 y_breaks <- pretty(c(y_min, y_max), n = 5) # 5 breaks
 
 # Main faceted plot, no x-axis text or ticks or legend
-main_plot <- ggplot(filtered_data, aes(x = `Environmental Condition`, y = `Relative Abundance`, fill = `Environmental Condition`)) +
+main_plot <- ggplot(Long_Proteins2, aes(x = `Environmental Condition`, y = `Relative Abundance`, fill = `Environmental Condition`)) +
   geom_boxplot(color = "black", width = 0.6, outlier.size = 1) + # Boxplot with black outline
   scale_fill_grey(start = 0.6, end = 0.9) + # Gray-scale
   scale_y_continuous(limits = c(y_min, y_max), breaks = y_breaks) + # Settings for y axis
@@ -94,8 +93,8 @@ legend_df <- data.frame(
 )
 
 legend_plot <- ggplot(legend_df, aes(x = x, y = y)) +
-  geom_point(aes(color = color), size = 4, show.legend = FALSE) +  # controls point size
-  geom_text(aes(label = label), vjust = -1.1, size = 3.5) +       # controls vertical spacing
+  geom_point(aes(color = color), size = 4, show.legend = FALSE) +  # Controls point size
+  geom_text(aes(label = label), vjust = -1.1, size = 3.5) +       # Controls vertical spacing
   scale_color_identity() +
   xlim(1, 2) + # x limits
   ylim(0.7, 1.3) + # y limits
