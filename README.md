@@ -1,4 +1,4 @@
-# GitHub Repository Description
+# Repository Description
 This GitHub repository contains all annotated R scripts that code for all tables and figures contained in my M.S. thesis. 
 The intent of this GitHub repository is to serve as a central location for all my R scripts. As I receive feedback on my figures, I will commit coding changes **HERE** . 
 The purpose is to retain my R code so I can: 
@@ -8,7 +8,7 @@ The purpose is to retain my R code so I can:
   (and more importantly)
 - Be able to reproduce what I did upon request!
 
-# GitHub Repository Contents
+# Contents
 I have included annotated R scripts that code for the following tables and figures within each chapter:
 
 --------------------------------------
