@@ -4,8 +4,7 @@ The intent of this GitHub repository is to serve as a central location for all m
 The purpose is to retain my R code so I can: 
 
 - Clarify and confirm any information contained in the exported tables and figures
-- Return to my progress rather than having to recode from scratch,
-  (and more importantly)
+- Return to my progress rather than having to recode from scratch
 - Be able to reproduce what I did upon request!
 
 # Contents
