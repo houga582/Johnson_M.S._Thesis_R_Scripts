@@ -1,0 +1,100 @@
+library(ggplot2)
+library(dplyr)
+library(officer)
+
+# Importing Data and Displaying Data Structure
+THI <- read.csv("THIData.csv")
+str(THI)
+
+# Convert Date to Factor
+THI$Date <- factor(THI$Date,
+		      levels = c("7/17/2024", "7/25/2024"), # Ordering factors
+                      labels = c("July 17, 2024", "July 25, 2024")) 
+# Re-label like this
+
+# Extracting Hour from Time Variable
+THI <- THI %>%
+  mutate(TimeHour = as.numeric(sub(":.*", "", Time)))
+
+# Filter for Sampling Points
+highlight_points <- THI %>%
+  filter(TimeHour %in% c(5, 10, 14)) %>%
+  mutate(PointType = "Sampling Point") # Tags these as sampling point
+
+# Creating the THI plot
+p_thi <- ggplot(THI, aes(x = TimeHour, y = THI)) +
+
+# Shades background for heat and thermoneutral zones
+  annotate("rect", xmin = -Inf, xmax = Inf, ymin = 72, ymax = Inf,
+           fill = "#FEE0D2", alpha = 0.4) +  # Heat stress zone
+  annotate("rect", xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = 72,
+           fill = "#DEEBF7", alpha = 0.3) +  # Thermoneutral zone
+
+  geom_hline(yintercept = 72, linetype = "dashed", color = "#D55E00", size = 0.7) + # Threshold reference line
+
+  annotate("text", x = 13, y = 85, label = "Heat Stress Conditions", # Labels for the shaded zones
+           color = "#A63603", fontface = "bold", size = 4) +
+  annotate("text", x = 13, y = 60, label = "Thermoneutral Conditions",
+           color = "#004C99", fontface = "italic", size = 4) +
+
+  geom_line(aes(color = Date, group = Date), size = 1) + # Trendlines and points (with mapped color/shape by Date)
+  geom_point(aes(color = Date, shape = Date), size = 2) +
+
+  geom_point(data = highlight_points, # Distinguishes THI coinciding with sampling conditions with a bullseye
+             aes(x = TimeHour, y = THI, shape = PointType),
+             color = "black", fill = NA, size = 5, stroke = 1.5,
+             inherit.aes = FALSE) +
+
+  xlab("Time of Day (24-Hour Scale)") + # Labels x axis
+  ylab("Point THI Value") + # Labels y axis
+  ggtitle("Temperature-Humidity Index (THI) Throughout the Day") + # Main title
+
+  theme_bw() + # Theme specifications
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold"),
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    legend.box = "vertical",
+    legend.title = element_text(face = "bold")
+  ) +
+
+  scale_color_manual( # Colors set for each date
+    name = "Date",
+    values = c(
+      "July 17, 2024" = "#009E73",   # Bluish Green
+      "July 25, 2024" = "#CC79A7"    # Reddish Purple
+    )
+  ) +
+
+  scale_shape_manual( # Shape scale for date and sampling points
+    values = c(
+      "July 17, 2024" = 21,
+      "July 25, 2024" = 15,
+      "Sampling Point" = 21
+    )
+  ) +
+
+  guides( # Specifies legend order of appearance
+    color = guide_legend(order = 1, title = "Date"),
+    shape = guide_legend(order = 2, title = "Point Type")
+  ) +
+
+  scale_x_continuous( # Customizes breaks along x axis
+    breaks = seq(0, 23, by = 5),
+    labels = paste0(seq(0, 23, by = 5), ":00")
+  ) +
+
+  coord_cartesian(ylim = c(50, 90)) # Range for y axis
+
+# Saves THI Plot as a .png
+ggsave("THI_plot.png", plot = p_thi, width = 10, height = 4.5, dpi = 300)
+
+# Creates a Word document
+doc <- read_docx()
+
+# Adds THI Plot to Word Document
+doc <- doc %>%
+  body_add_par("Temperature-Humidity Index Throughout the Day", style = "heading 1") %>%
+  body_add_img(src = "THI_plot.png", width = 6, height = 3)
+
+# Save Word Document
+print(doc, target = "Johnson_Chapter_4_Figure_4.3.docx")
