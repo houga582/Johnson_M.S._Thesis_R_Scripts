@@ -17,11 +17,11 @@ I have included annotated R scripts that code for the following tables and figur
 
 ---------------------------------------
 
-## Chapter 2
+## [Chapter 2](Johnson_Chapter_2_R_Scripts)
 ### Tables 
-Table 2.1
+[Table 2.1](Johnson_Chapter_2_R_Scripts/Johnson_Chapter_2_Table_2.1_R_Script.txt)
 ### Figures
-Figure 2.1
+[Figure 2.1](Johnson_Chapter_2_R_Scripts/Johnson_Chapter_2_Figure_2.1_R_Script.txt)
 
 ---------------------------------------
 
@@ -30,10 +30,10 @@ _R scripts to be posted_
 
 ---------------------------------------
 
-## Chapter 4 
+## [Chapter 4](Johnson_Chapter_4_R_Scripts) 
 _R scripts to be posted_
 ### Tables
-- Table 4.1
+- [Table 4.1](Johnson_Chapter_4_R_Scripts/Johnson_Chapter_4_Table_4.1_R_Script.txt)
 - Table 4.2
 - Table 4.3
 ### Figures
