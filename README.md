@@ -13,7 +13,7 @@ I have included annotated R scripts that code for the following tables and figur
 --------------------------------------
 
 ## Chapter 1
-No coding activities associated
+_No coding activities associated_
 
 ---------------------------------------
 
