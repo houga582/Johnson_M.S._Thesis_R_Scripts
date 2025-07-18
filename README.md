@@ -34,11 +34,11 @@ _R scripts to be posted_
 _R scripts to be posted_
 ### Tables
 - [Table 4.1](Johnson_Chapter_4_R_Scripts/Johnson_Chapter_4_Table_4.1_R_Script.txt)
-- Table 4.2 * Display SD or SEM?
-- Table 4.3 * Display SD or SEM?
+- Table 4.2    Note: Provide SD or SEM?
+- Table 4.3    Note: Provide SD or SEM?
 ### Figures
-- Figure 4.1 *_p_-values needed for labels
-- Figure 4.2 *_p_-values needed for labels
+- Figure 4.1    Note:_p_-values needed for boxplot labels
+- Figure 4.2    Note:_p_-values needed for boxplot labels
 - [Figure 4.3](Johnson_Chapter_4_R_Scripts/Johnson_Chapter_4_Figure_4.3_R_Script.txt)
 
 ---------------------------------------
