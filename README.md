@@ -19,9 +19,9 @@ _No coding activities associated_
 
 ## [Chapter 2](Johnson_Chapter_2_R_Scripts)
 ### Tables 
-[Table 2.1](Johnson_Chapter_2_R_Scripts/Johnson_Chapter_2_Table_2.1_R_Script.txt)
+- [Table 2.1](Johnson_Chapter_2_R_Scripts/Johnson_Chapter_2_Table_2.1_R_Script.txt)
 ### Figures
-[Figure 2.1](Johnson_Chapter_2_R_Scripts/Johnson_Chapter_2_Figure_2.1_R_Script.txt)
+- [Figure 2.1](Johnson_Chapter_2_R_Scripts/Johnson_Chapter_2_Figure_2.1_R_Script.txt)
 
 ---------------------------------------
 
