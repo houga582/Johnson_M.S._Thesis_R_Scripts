@@ -39,7 +39,7 @@ _R scripts to be posted_
 ### Figures
 - Figure 4.1
 - Figure 4.2
-- Figure 4.3
+- [Figure 4.3](Johnson_Chapter_4_R_Scripts/Johnson_Chapter_4_Figure_4.3_R_Script.txt)
 
 ---------------------------------------
 
