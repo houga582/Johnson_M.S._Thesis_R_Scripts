@@ -1,0 +1,44 @@
+# Loading Required Packages
+library(dplyr)
+library(ggplot2)
+library(flextable)
+library(officer)
+
+# Importing Data and Displaying Data Structure
+Saliva <- read.csv("SalivaryCortisolGenomics.csv")
+str(Saliva)
+
+# Convert Date to Factor
+Saliva$Date <- factor(Saliva$Date,
+		      levels = c("7/17/2024", "7/25/2024"), # Ordering factors
+                      labels = c("July 17, 2024", "July 25, 2024")) # Re-label like this
+
+# Convert Time to Factor
+Saliva$Time <- factor(Saliva$Time,
+                      levels = c("5am", "10am", "2pm"), # Ordering factors
+                      labels = c("5:00 AM", "10:00 AM", "2:00 PM")) # Re-label like this
+
+# Create sample counts table
+sample_counts <- Saliva %>%
+  group_by(Date, Time) %>% # Group by Date and Time
+  summarise(`Number of Samples` = n(), .groups = "drop") %>% # Count Number of Samples Based on Grouping
+  arrange(Date, Time) # Sort result
+
+# Make a Flextable
+ft <- flextable(sample_counts) %>% # Making a flex table from sample counts table
+  merge_v(j = "Date") %>% # Merge vertically on 'Date' column so not redundant
+  theme_vanilla() %>% # This is the theme
+  autofit() %>% # Automatic adjustment of column width
+  bold(i = 1, part = "header") %>% # Bolds the header
+  fontsize(size = 11, part = "all") # Font size for entire table
+
+# Creates a Word document
+doc <- read_docx()
+
+# Adds Flextable to Word document
+doc <- doc %>%
+  body_add_par("Sample Counts Summary Table", style = "heading 1") %>%
+  body_add_flextable(ft)
+
+# Save Word document
+print(doc, target = "Johnson_Chapter_4_Table_4.1.docx")
