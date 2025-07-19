@@ -2,11 +2,11 @@
 * Primary Task: Need to confirm linear mixed model used for Chapter 4 statistical analysis.
 
 # Description :thought_balloon:
-This GitHub repository contains annotated R scripts that code for all tables and figures contained in my M.S. Thesis. 
-The intent of this GitHub repository is to serve as a central location for all my R scripts. As I receive feedback on my tables and figures, I will commit coding changes **HERE**. 
+This GitHub repository contains annotated R scripts that code for all statistical analyses, tables, and figures contained in my M.S. Thesis. 
+The intent of this GitHub repository is to serve as a central location for all my R scripts. As I receive feedback, I will commit coding changes **HERE**. 
 The purpose is to retain my R code so I can: 
 
-- Clarify and confirm any information contained in the exported tables and figures
+- Clarify and confirm any information
 - Return to my progress rather than having to recode from scratch
 - Be able to reproduce what I did upon request!
 
