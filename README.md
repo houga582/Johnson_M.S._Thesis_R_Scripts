@@ -15,12 +15,12 @@ I have included annotated R scripts that code for the following tables and figur
 
 --------------------------------------
 
-## Chapter 1
+## Chapter 1 :open_book:
 _No coding activities associated_
 
 ---------------------------------------
 
-## [Chapter 2](Johnson_Chapter_2_R_Scripts)
+## [Chapter 2](Johnson_Chapter_2_R_Scripts) :dna:
 ### Tables 
 - [Table 2.1](Johnson_Chapter_2_R_Scripts/Johnson_Chapter_2_Table_2.1_R_Script.txt)
 ### Figures
@@ -28,12 +28,12 @@ _No coding activities associated_
 
 ---------------------------------------
 
-## Chapter 3
+## Chapter 3 :microbe:
 _R scripts to be posted_
 
 ---------------------------------------
 
-## [Chapter 4](Johnson_Chapter_4_R_Scripts) 
+## [Chapter 4](Johnson_Chapter_4_R_Scripts) :test_tube:
 _R scripts to be posted_
 ### Statistical Analysis
 - Linear Mixed Model
