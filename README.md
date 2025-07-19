@@ -10,7 +10,7 @@ The purpose is to retain my R code so I can:
 - Return to my progress rather than having to recode from scratch
 - Be able to reproduce what I did upon request!
 
-# Contents
+# Contents :card_index_dividers:
 I have included annotated R scripts that code for the following tables and figures within each chapter:
 
 --------------------------------------
