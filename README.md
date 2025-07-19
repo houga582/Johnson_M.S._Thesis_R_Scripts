@@ -1,9 +1,5 @@
-# :pushpin: **START HERE** with the To-Dos
-* Chapter 4 Linear Mixed Model
-** Table 4.2
-** Table 4.3
-** Figure 4.1
-** Figure 4.2
+# :pushpin: **START HERE**
+* Need to confirm linear mixed model used in Chapter 4 statistical analysis.
 
 # Description
 This GitHub repository contains annotated R scripts that code for all tables and figures contained in my M.S. Thesis. 
