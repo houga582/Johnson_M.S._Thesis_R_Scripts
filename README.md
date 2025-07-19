@@ -1,5 +1,5 @@
 # **START HERE** :rocket:
-* Primary Task: Need to confirm linear mixed model used for Chapter 4 statistical analysis.
+:heavy_check_mark: Need to confirm linear mixed model used for Chapter 4 statistical analysis.
 
 # Description :thought_balloon:
 This GitHub repository contains annotated R scripts that code for all statistical analyses, tables, and figures contained in my M.S. Thesis. 
