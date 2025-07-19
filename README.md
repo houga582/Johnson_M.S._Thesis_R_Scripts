@@ -1,5 +1,5 @@
 # :pushpin: **START HERE**
-* _Monday, July 21_: Need to confirm linear mixed model used for Chapter 4 statistical analysis.
+* Need to confirm linear mixed model used for Chapter 4 statistical analysis.
 
 # Description
 This GitHub repository contains annotated R scripts that code for all tables and figures contained in my M.S. Thesis. 
