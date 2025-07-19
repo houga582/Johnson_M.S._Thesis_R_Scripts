@@ -1,7 +1,7 @@
 # **START HERE** :rocket:
 * Need to confirm linear mixed model used for Chapter 4 statistical analysis.
 
-# Description :speech_balloon:
+# Description :thought_balloon:
 This GitHub repository contains annotated R scripts that code for all tables and figures contained in my M.S. Thesis. 
 The intent of this GitHub repository is to serve as a central location for all my R scripts. As I receive feedback on my tables and figures, I will commit coding changes **HERE**. 
 The purpose is to retain my R code so I can: 
