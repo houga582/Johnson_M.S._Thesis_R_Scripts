@@ -32,6 +32,8 @@ _R scripts to be posted_
 
 ## [Chapter 4](Johnson_Chapter_4_R_Scripts) 
 _R scripts to be posted_
+### Statistical Analysis
+- Linear Mixed Model
 ### Tables
 - [Table 4.1](Johnson_Chapter_4_R_Scripts/Johnson_Chapter_4_Table_4.1_R_Script.txt)
 - Table 4.2
