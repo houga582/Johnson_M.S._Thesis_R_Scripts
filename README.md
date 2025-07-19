@@ -1,3 +1,10 @@
+# :pushpin: **START HERE** with the To-Dos
+* Chapter 4 Linear Mixed Model
+** Table 4.2
+** Table 4.3
+** Figure 4.1
+** Figure 4.2
+
 # Description
 This GitHub repository contains annotated R scripts that code for all tables and figures contained in my M.S. Thesis. 
 The intent of this GitHub repository is to serve as a central location for all my R scripts. As I receive feedback on my tables and figures, I will commit coding changes **HERE**. 
